@@ -1,4 +1,5 @@
 import { SlashCommandBuilder } from "@discordjs/builders";
+import ytdl from "@distube/ytdl-core";
 import { QueryType } from "discord-player";
 import { EmbedBuilder } from "discord.js";
 
@@ -29,7 +30,9 @@ export default {
 
 		const result = await player.search(url, {
 			requestedBy: interaction.user,
-			searchEngine: QueryType.YOUTUBE_VIDEO,
+			searchEngine: ytdl.validateURL(url)
+				? QueryType.YOUTUBE_VIDEO
+				: QueryType.YOUTUBE_SEARCH,
 		});
 
 		if (!result.hasTracks()) return interaction.reply("Música não encontrada");
