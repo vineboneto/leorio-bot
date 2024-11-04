@@ -4,6 +4,7 @@ import { REST } from "@discordjs/rest";
 import fs from "node:fs";
 import path from "node:path";
 import { Player } from "discord-player";
+import { YoutubeiExtractor } from "discord-player-youtubei";
 
 export const client = new Client({
 	intents: [
@@ -21,7 +22,7 @@ const player = new Player(client, {
 	},
 });
 
-player.extractors.loadDefault();
+player.extractors.register(YoutubeiExtractor, {});
 
 const commands = [];
 client.commands = new Collection();
