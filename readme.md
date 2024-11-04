@@ -4,7 +4,7 @@
 <img src="assets/leorio.jpeg" alt="Leorio Sigma" width="200" height="200" />
 </div>
 
-Um bot para tocar músicas no servidor no meu amigo. Me basei no código de [pawel02](https://github.com/pawel02/discord-js-music-bot).
+Um bot para tocar músicas no servidor no meu amigo. Usei o código do [pawel02](https://github.com/pawel02/discord-js-music-bot) como exemplo.
 
 **Leorio Nunca Abandona seus amigos.**
 
