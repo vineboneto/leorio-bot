@@ -13,16 +13,18 @@ export default {
 
 	/**
 	 *
-	 * @param {{ interaction: import('discord.js').Interaction<import('discord.js').CacheType>; player: import('discord-player').Player }} param
+	 * @param {{ interaction: import('discord.js').Interaction<import('discord.js').CacheType>; player: import('discord-player').Player, sharedPlayer: import('discord-player').AudioPlayer }} param
 	 */
-	execute: async ({ client, interaction, player }) => {
+	execute: async ({ client, interaction, player, sharedPlayer }) => {
 		if (!interaction.member.voice.channel)
 			return interaction.reply("Você precisa estar em um canal de voz");
 
 		const queue = player.nodes.create(interaction.guild);
 
 		if (!queue.connection)
-			await queue.connect(interaction.member.voice.channel);
+			await queue.connect(interaction.member.voice.channel, {
+				audioPlayer: sharedPlayer,
+			});
 
 		const embed = new EmbedBuilder();
 

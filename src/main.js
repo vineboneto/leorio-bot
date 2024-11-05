@@ -5,6 +5,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Player } from "discord-player";
 import { YoutubeiExtractor } from "discord-player-youtubei";
+import { createAudioPlayer } from "discord-player";
 
 export const client = new Client({
 	intents: [
@@ -15,6 +16,8 @@ export const client = new Client({
 	],
 });
 
+const sharedPlayer = createAudioPlayer();
+
 const player = new Player(client, {
 	ytdlOptions: {
 		quality: "highestaudio",
@@ -22,7 +25,8 @@ const player = new Player(client, {
 	},
 });
 
-player.extractors.register(YoutubeiExtractor, {});
+// player.extractors.register(YoutubeiExtractor, {});
+player.extractors.loadDefault();
 
 const commands = [];
 client.commands = new Collection();
@@ -70,7 +74,7 @@ client.on("interactionCreate", async (interaction) => {
 	}
 
 	try {
-		await command.execute({ client, interaction, player });
+		await command.execute({ client, interaction, player, sharedPlayer });
 	} catch (error) {
 		console.error(error);
 		await interaction.reply({

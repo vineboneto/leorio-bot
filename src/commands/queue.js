@@ -23,7 +23,7 @@ export default {
 			.toArray()
 			.slice(0, 10)
 			.map((song, i) => {
-				return `${i}) [${song.duration}]\` ${song.title} - <@${song.requestedBy.id}>`;
+				return `${i}) [${song.duration}]\` ${song.title} - <@${song.requestedBy?.id}>`;
 			})
 			.join("\n");
 
@@ -36,7 +36,7 @@ export default {
 						`**Tocando agora**\n
             ${
 							currentSong
-								? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy.id}>`
+								? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy?.id || "Leorio"}>`
 								: "Nenhuma música tocando agora"
 						}
             \n\n**Na Fila**\n${queueString}`,
