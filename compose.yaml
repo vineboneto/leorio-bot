@@ -1,0 +1,9 @@
+services:
+  app:
+    container_name: leorio_bot
+    build:
+      context: .
+      dockerfile: dockerfile
+    env_file: .env
+    ports:
+      - 80:80
