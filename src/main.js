@@ -25,8 +25,8 @@ const player = new Player(client, {
 	},
 });
 
-// player.extractors.register(YoutubeiExtractor, {});
-player.extractors.loadDefault();
+player.extractors.register(YoutubeiExtractor, {});
+// player.extractors.loadDefault();
 
 const commands = [];
 client.commands = new Collection();
